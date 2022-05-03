@@ -428,23 +428,22 @@ namespace CallOfTheWild
             );
             library.AddCombatFeats(swordplay_style, swordplay_upset);
         }
-            private static void createDesnaShootingStar()
+            static void createDesnaShootingStar()
         {
             BlueprintFeature desnaFeature = library.Get<BlueprintFeature>("2c0a3b9971327ba4d9d85354d16998c1"); // DesnaFeature
         BlueprintWeaponType _weaponType = Main.library.Get<BlueprintWeaponType>("5a939137fc039084580725b2b0845c3f"); // Starknife
 
-        BlueprintFeature desnasShootingStar =  Helpers.CreateFeature(
-                "DesnasShootingStar",
-                "Desnas Shooting Star",
-                "Among the divine fighting manuals of the Inner Sea, few are as ancient as Clamor of the Spheres, a collection of fighting techniques favored by Desna’s faithful. True to its name, the manual focuses on interpreting the chaos and sounds of combat, but nevertheless provides insightful and downright brilliant methods of defense with Desna’s favored weapon, using techniques that treat a fight with a starknife more as a beautiful dance than a battle. \nYou can add your Charisma bonus to attack rolls and damage rolls when wielding a starknife. If you do so, you don’t modify attack rolls and damage rolls with your starknife with your Strength modifier, your Dexterity modifier (if you have Weapon Finesse), or any other ability score (if you have an ability that allows you to modify attack rolls and damage rolls with that ability score)",
-                Helpers.getGuid("DesnasShootingStar"),
-                FeatureGroup.CombatFeat,
-                Helpers.Create<DesnasShootingStarLogic>(),
-                desnaFeature.PrerequisiteFeature(),
-                Helpers.Create<AddStartingEquipment>(x => x.CategoryItems = new []{ _weaponType.Category }));
-
-            Helpers.AddCombatFeats(library, desnasShootingStar);
-
+desna_shooting_star = Helpers.CreateFeature("DesnaStar",
+                                                    "Divine fighting technique",
+                                                    "Benefit: CHA to damage with star knife",
+                                                    "",
+                                                    Helpers.GetIcon("c126adbdf6ddd8245bda33694cd774e8"), //gtwf
+                                                    FeatureGroup.CombatFeat,
+                                                    Helpers.Create<DesnasShootingStarLogic>(),
+                                                    );
+            desna_shooting_star.Groups = desna_shooting_star.Groups.AddToArray(FeatureGroup.Feat);
+            desna_shooting_star.Groups = desna_shooting_star.Groups.AddToArray(FeatureGroup.Feat);
+            library.AddCombatFeats(desna_shooting_star);
         }
 
         static void createFeintFeats()
